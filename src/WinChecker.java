@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class WinChecker implements Runnable {
     public static boolean win;
@@ -11,7 +10,7 @@ public class WinChecker implements Runnable {
         win = false;
         int n =0;
         while (true && Draw.field.length != 0) {
-            if (win == false) {
+            if (!win) {
                 try {
                     int[][] fieldNext = Draw.field;
                     for (int j = 0; j < 3; j++) {

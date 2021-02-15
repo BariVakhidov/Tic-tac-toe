@@ -1,19 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.sound.midi.*;
-import java.lang.CharSequence;
-import java.net.*;
-import javax.swing.event.*;
-import java.util.ArrayList;
-import java.awt.geom.*;
-import java.util.logging.*;
 
 public class Draw extends JPanel {
 
     public static final int FIELD_IS_EMPTY = 0;
-    public static final int X = 10;
-    public static final int O = 100;
     boolean Xturn;
     public static int [][] field;
     private static int xWin;
@@ -39,7 +30,13 @@ public class Draw extends JPanel {
         }
         Xturn = true;
     }
+    public static int getxWin() {
+        return xWin;
+    }
 
+    public static int getoWin() {
+        return oWin;
+    }
     @Override
   protected void  processMouseEvent(MouseEvent mouseEvent) {
         if (mouseEvent.getButton() == MouseEvent.BUTTON1) {
@@ -47,7 +44,7 @@ public class Draw extends JPanel {
             int t = (int) ((float) mouseEvent.getY()/(getHeight()/3));// на какую ячейку кликнули
 
             if (field[k][t] ==FIELD_IS_EMPTY) {
-                if (Xturn == true) {
+                if (Xturn) {
                     field[k][t] = 10;
                     Xturn = false;
                     repaint();
@@ -70,14 +67,7 @@ public class Draw extends JPanel {
         win(g);
         System.out.println(xWin +" " + oWin);
     }
-
-    public static int getxWin() {
-        return xWin;
-    }
-
-    public static int getoWin(){
-        return oWin;
-    }
+    
 
     public void drawLine(Graphics graphics) {
         Graphics2D gg = (Graphics2D) graphics;
@@ -170,15 +160,5 @@ public class Draw extends JPanel {
         Graphics2D g2 = (Graphics2D) graphics;
         g2.setStroke(new BasicStroke(10.0f));
         return g2;
-    }
-    public Color color() {
-        int red = (int) (Math.random()*255);
-        int green = (int) (Math.random() * 255);
-        int blue = (int) (Math.random() * 255);
-        Color color = new Color(red,green,blue);
-        return color;
-    }
-    public void game() {
-
     }
 }
